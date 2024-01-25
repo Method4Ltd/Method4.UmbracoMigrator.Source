@@ -1,0 +1,17 @@
+{
+	"name": "Migration.Source",
+	"version": "1",
+	"css": [
+		"~/App_Plugins/Method4UmbracoMigratorSource/backoffice/styles/main.css"
+	],
+	"javascript": [
+		// inject startup script
+		"~/App_Plugins/Method4UmbracoMigratorSource/backoffice/scripts/startup.module.js",
+
+		// inject services
+		"~/App_Plugins/Method4UmbracoMigratorSource/backoffice/scripts/services/migrator.service.js",
+
+		// inject controllers
+		"~/App_Plugins/Method4UmbracoMigratorSource/backoffice/scripts/controllers/dashboard.controller.js"
+	]
+}

@@ -1,0 +1,40 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+    "AuthorDetails": {
+      "Name": "Method4",
+      "Description": "We’re development people. We build smart and brilliant software solutions",
+      "Url": "https://www.method4.co.uk/",
+      "ImageUrl": "https://www.method4.co.uk/media/rgad0qte/light-grey-m-2.png",
+      "SyncContributorsFromRepository": true
+    },
+    "Category": "Developer Tools",
+    "Description": "Generates Migration Snapshot (.zip) files that can be imported into your new Umbraco v10+ site using the Method4.UmbracoMigrator.Source package.",
+    "DocumentationUrl": "https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source/blob/v8/main/docs/README.md",
+    "LicenseTypes": [ "Free" ],
+    "IssueTrackerUrl": "https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source/issues",
+    "PackageType": "Package",
+    "RelatedPackages": [
+      {
+        "PackageId": "Method4.UmbracoMigrator.Target",
+        "Description": "Import Migration Snapshots created using the Method4.UmbracoMigrator.Source package."
+      }
+    ],
+    "Screenshots": [
+      {
+        "ImageUrl": "https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source/blob/v8/main/docs/images/backofficedashboard.png",
+        "Caption": "The backoffice dashboard"
+      }
+    ],
+    "Tags": ["migration", "migrator", "snapshot", "import", "backoffice"],
+    "VersionSpecificPackageIds": [
+      {
+        "UmbracoMajorVersion": 7,
+        "PackageId": "Method4.UmbracoMigrator.Source"
+      },
+      {
+        "UmbracoMajorVersion": 8,
+        "PackageId": "Method4.UmbracoMigrator.Source"
+      }
+    ],
+    "VideoUrl": ""
+  }

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<!-- Information for the NuGet package -->
+	<PropertyGroup>
+		<PackageId>Method4.UmbracoMigrator.Source.Core</PackageId>
+		<Title>Method4.UmbracoMigrator.Source.Core</Title>
+		<Description>Core package for Method4.UmbracoMigrator.Source</Description>
+		<PackageVersion>1.0.9</PackageVersion>
+		<Product>Method4.UmbracoMigrator.Source</Product>
+		<Authors>Method4 Ltd</Authors>
+		<Company>Method4 Ltd</Company>
+		<Copyright>Method4 ©️ 2024</Copyright>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<!-- Include NuGet dependencies -->
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="[12.14.0,12.999)" />
+		<PackageReference Include="Umbraco.SqlServerCE" Version="4.0.0.1" />
+		<PackageReference Include="UmbracoCms.Core" Version="[8.18.0,8.999)" />
+		<PackageReference Include="UmbracoCms.Web" Version="[8.18.0,8.999)" />
+	</ItemGroup>
+</Project>

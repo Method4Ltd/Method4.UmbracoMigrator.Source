@@ -1,0 +1,82 @@
+﻿.migrator-dashboard {
+    position: relative;
+    padding: 20px;
+}
+
+    .migrator-dashboard .root-node-previews {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-height: 250px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+
+    .migrator-dashboard .root-node-previews__node {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 120px;
+        padding: 10px 5px;
+        cursor: pointer;
+        border: 1px solid #ababac;
+        border-radius: 10px;
+        user-select: none;
+    }
+
+        .migrator-dashboard .root-node-previews__node .umb-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+        }
+
+    .migrator-dashboard .settings-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 10px;
+    }
+
+    .migrator-dashboard .settings-container__setting {
+    }
+
+    .migrator-dashboard .-include {
+        box-shadow: inset 0 0 10px #4cff00;
+    }
+
+    .migrator-dashboard .-exclude {
+        box-shadow: inset 0 0 10px #ff0000;
+    }
+
+    .migrator-dashboard .snapshot-file-previews {
+        display: flex;
+        gap: 10px;
+    }
+
+    .migrator-dashboard .snapshot-file-previews__file {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 120px;
+        padding: 10px 5px;
+        cursor: pointer;
+        border: 1px solid #ababac;
+        border-radius: 10px;
+        user-select: none;
+        text-align: center;
+    }
+
+    .migrator-dashboard .snapshot-file-preview__buttons {
+        display: flex;
+    }
+
+    .migrator-dashboard .loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(0 0 0 / 24%);
+    }

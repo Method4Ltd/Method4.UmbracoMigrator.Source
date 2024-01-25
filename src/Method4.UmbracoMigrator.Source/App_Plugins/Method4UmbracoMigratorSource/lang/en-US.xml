@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+	<area alias="treeHeaders">
+		<key alias="migration">Content Migration</key>
+		<key alias="migratorSource">Method4 Migrator (Source)</key>
+	</area>
+
+	<area alias="migratorSource">
+		<key alias="createMigrationSnapshot">Create Migration Snapshot</key>
+		<key alias="downloadSnapshot">Download</key>
+		<key alias="deleteSnapshot">Delete</key>
+		<key alias="deleteAllSnapshots">Delete all</key>
+	</area>
+</language>

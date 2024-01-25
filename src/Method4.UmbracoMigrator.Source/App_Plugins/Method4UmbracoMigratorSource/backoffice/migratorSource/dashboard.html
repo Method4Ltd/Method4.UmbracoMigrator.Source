@@ -1,0 +1,107 @@
+﻿<div class="migrator-dashboard" ng-controller="migratorSource.dashboardController as vm">
+    <umb-box>
+        <umb-box-header title="Migration Snapshots">
+            <umb-button action="vm.deleteAllSnapshots()"
+                        label-key="migratorSource_deleteAllSnapshots"
+                        type="button"
+                        button-style="danger"
+                        state="vm.deleteAllButtonState"
+                        disabled="vm.currentSnapshots.length === 0">
+            </umb-button>
+        </umb-box-header>
+        <umb-box-content>
+            <div class="snapshot-file-previews">
+                <div class="snapshot-file-previews__file" ng-repeat="item in vm.currentSnapshots | orderBy: 'CreateDate':true">
+                    <umb-icon icon="icon-zip color-orange" class="large"></umb-icon>
+                    <span>{{item.FileName}}</span>
+                    <span>{{item.CreateDate | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                    <span>{{item.SizeBytes}}</span>
+                    <div class="snapshot-file-preview__buttons">
+                        <umb-button action="vm.downloadSnapshot(item.FileName)"
+                                    label-key="migratorSource_downloadSnapshot"
+                                    type="button"
+                                    button-style="success">
+                        </umb-button>
+                        <umb-button action="vm.deleteSnapshot(item.FileName)"
+                                    label-key="migratorSource_deleteSnapshot"
+                                    type="button"
+                                    button-style="danger">
+                        </umb-button>
+                    </div>
+                </div>
+            </div>
+        </umb-box-content>
+    </umb-box>
+
+    <umb-box>
+        <umb-box-header title="Available root nodes">
+            <span>{{vm.settings.selectedRootNodes.length}} root content nodes selected</span>
+            <span>| {{vm.settings.selectedRootMediaNodes.length}} root media nodes selected</span>
+            <umb-button action="vm.createMigrationSnapshot();"
+                        label-key="migratorSource_createMigrationSnapshot"
+                        type="button"
+                        button-style="action"
+                        state="vm.createButtonState"
+                        disabled="vm.settings.selectedRootNodes.length === 0 && vm.settings.selectedRootMediaNodes.length === 0">
+            </umb-button>
+        </umb-box-header>
+
+        <umb-box-content class="root-box-contents">
+            <div class="settings-container">
+                <umb-toggle class="settings-container__setting"
+                            checked="vm.settings.IncludeOnlyPublished"
+                            on-click="vm.toggleSetting('IncludeOnlyPublished')"
+                            show-labels="true"
+                            label-on="Include only published nodes"
+                            label-off="Include only published nodes"
+                            label-position="right">
+                </umb-toggle>
+            </div>
+            <div class="root-node-previews">
+                <div class="root-node-previews__node" ng-repeat="item in vm.rootNodes" ng-click="vm.toggleNode(item.Id)" ng-class="(vm.settings.selectedRootNodes.includes(item.Id) === true) ? '-include' : '-exclude'">
+                    <umb-icon icon="{{item.IconAlias}}" class="large"></umb-icon>
+                    <span>{{item.Name}}</span>
+                    <!--<span ng-show="vm.settings.selectedRootNodes.includes(item.Id) === true">true</span>
+                    <span ng-show="vm.settings.selectedRootNodes.includes(item.Id) === false">false</span>-->
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="settings-container">
+                <umb-toggle class="settings-container__setting"
+                            checked="vm.settings.IncludeMediaFiles"
+                            on-click="vm.toggleSetting('IncludeMediaFiles')"
+                            show-labels="true"
+                            label-on="Include physical meda files"
+                            label-off="Include physical meda files"
+                            label-position="right">
+                </umb-toggle>
+            </div>
+
+            <div class="root-node-previews">
+                <div class="root-node-previews__node" ng-repeat="item in vm.rootMediaNodes" ng-click="vm.toggleMediaNode(item.Id)" ng-class="(vm.settings.selectedRootMediaNodes.includes(item.Id) === true) ? '-include' : '-exclude'">
+                    <umb-icon icon="{{item.IconAlias}}" class="large"></umb-icon>
+                    <span>{{item.Name}}</span>
+                    <!--<span ng-show="vm.settings.selectedRootNodes.includes(item.Id) === true">true</span>
+                    <span ng-show="vm.settings.selectedRootNodes.includes(item.Id) === false">false</span>-->
+                </div>
+
+            </div>
+        </umb-box-content>
+
+    </umb-box>
+
+    <umb-box>
+        <umb-box-header title="Tips">
+        </umb-box-header>
+        <umb-box-content>
+            <p>If you encounter the error <i>"System.IO.FileLoadException: Could not load file or assembly 'System.Diagnostics.DiagnosticSource'. The located assembly's manifest definition does not match the assembly reference."</i> when generating a migration snapshot on a site that uses blob storage, try updating <i>"System.Diagnostics.DiagnosticSource"</i> to <i>v4.6.0</i> via NuGet</p>
+            <p>The UI might time out if the generation takes too long, you can watch the log for status updates.</p>
+        </umb-box-content>
+    </umb-box>
+
+    <div class="loader" id="migrator-loader" hidden>
+        <umb-load-indicator />
+    </div>
+</div>
