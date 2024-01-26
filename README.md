@@ -7,9 +7,9 @@
 [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/method4.umbracomigrator.source)
 
 ## What is the Method4.UmbracoMigrator?
-The Method4 Umbraco Migrator allows migrating content and media from a Umbraco v7/v8 site to an Umbraco 10+ site.
+The Method4 Umbraco Migrator allows migrating content and media from an Umbraco v7/v8 site to an Umbraco 10+ site.
 
-This tool was originally created as an intenral tool, for us at Method4, to make migrating our client's Umbraco sites easy. We've decided to make it available as an open source package as we belive other devs in the Umbraco community may find it useful too.
+This tool was originally created as an internal tool for us at Method4, to make migrating our client's Umbraco sites easy, and we've decided to make it available as an open-source package; as we believe other devs in the Umbraco community may find it useful too.
 
 Read our blog post about this tool here: [TODO Insert Link]
 
@@ -36,7 +36,7 @@ Please view the Method4.UmbracoMigrator.Target repo to find out about all of the
 ![A screenshot of the backoffice dashboard](./docs/images/backofficedashboard.png)
 
 ### ⚙️ Configurable snapshot exports
-You can select which root nodes to include in your migration snapshot, include only published nodes, and wether or not to include the physical media files.
+You can select which root nodes to include in your migration snapshot, include only published nodes, and whether or not to include the physical media files.
 
 ### 🖼️ Supports Azure Blob Storage
 Physical media files will be downloaded from Azure Blob storage if it is being used.
@@ -78,9 +78,9 @@ You will need to install the [Method4.UmbracoMigrator.Target](https://github.com
 ![Diagram showing a snapshot export from a va8 to v13 site](./docs/images/Snapshot_diagram.png)
 
 ## ❤️ Support
-This package was originally created as an internal tool to help us at Method4 perform migrations for our clients, it is being released as open source as we belive the Umbraco community might find it useful.
+This package was originally created as an internal tool for us at Method4, to make migrating our client's Umbraco sites easy, and we've decided to make it available as an open-source package; as we believe other devs in the Umbraco community may find it useful too.
 
-The package will be updated as and when we need it, feel free to report any bugs/issues you find, contribute by opening a pull request, and we will take a look when we have capacity. Please read the [Contributing Guide](./docs/CONTRIBUTING.md) for information on how to setup the project locally.
+The package will be updated as and when we need it, feel free to report any bugs/issues you find, contribute by opening a pull request, and we will take a look when we have capacity. Please read the [Contributing Guide](./docs/CONTRIBUTING.md) for information on how to set up the project locally.
 
 ## 🛣️ Roadmap
 Please see the [roadmap](./docs/ROADMAP.md) for a list of outstanding features and TODOs.

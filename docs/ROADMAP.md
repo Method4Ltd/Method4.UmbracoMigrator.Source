@@ -8,7 +8,7 @@ Feel free to submit a PR if you need them sooner.
 ---
 
 - Snapshot Export options
-    - Add ability to select/deselect all nodes, rather than just the root nodes.
+    - Add the ability to select/deselect all nodes, rather than just the root nodes.
 - General
     - Move snapshot generation to a background thread to prevent the UI from timing out during a large job.
     - Add some logic to disable the snapshot generate button whilst a snapshot generation is in progress.
