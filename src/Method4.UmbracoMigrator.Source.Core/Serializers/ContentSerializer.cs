@@ -21,8 +21,8 @@
  */
 
 using System.Linq;
-using System.Security.Policy;
 using System.Xml.Linq;
+using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 
@@ -44,6 +44,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
         {
             _fileService = fileService;
             _publicAccessService = publicAccessService;
+            this.relationAlias = Constants.Conventions.RelationTypes.RelateParentDocumentOnDeleteAlias;
         }
 
         public XElement Serialize(IContent item)

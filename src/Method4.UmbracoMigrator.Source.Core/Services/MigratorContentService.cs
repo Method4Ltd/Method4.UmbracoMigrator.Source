@@ -1,4 +1,5 @@
-﻿using Method4.UmbracoMigrator.Source.Core.Factories;
+﻿using System;
+using Method4.UmbracoMigrator.Source.Core.Factories;
 using Method4.UmbracoMigrator.Source.Core.Models.DataModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,12 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         /// <returns></returns>
         public List<IContent> GetRootNodeAndDescendants(int id)
         {
+            if (id == -20) // Recycle Bin
+            {
+                var trashedNodes = _contentService.GetPagedContentInRecycleBin(0, int.MaxValue, out var totalInBin);
+                return trashedNodes.ToList();
+            }
+
             var rootNode = _contentService.GetRootContent().FirstOrDefault(x => x.Id == id);
             if (rootNode == null)
             {

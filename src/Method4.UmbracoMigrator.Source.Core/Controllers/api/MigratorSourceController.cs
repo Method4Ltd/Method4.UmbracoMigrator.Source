@@ -40,6 +40,14 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
         public IHttpActionResult GetRootContent()
         {
             var rootNodePreviews = _migratorContentService.GetRootNodePreviews();
+            rootNodePreviews.Insert(0, new NodePreview()
+            {
+                Id = -20,
+                Name = "Recycle Bin",
+                IconAlias = "icon-trash",
+                IconColour = "color-black",
+                SortOrder = -999
+            });
             return Json(rootNodePreviews);
         }
 
@@ -47,6 +55,14 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
         public IHttpActionResult GetRootMedia()
         {
             var rootNodePreviews = _migratorMediaService.GetRootNodePreviews();
+            rootNodePreviews.Insert(0, new NodePreview()
+            {
+                Id = -21,
+                Name = "Recycle Bin",
+                IconAlias = "icon-trash",
+                IconColour = "color-black",
+                SortOrder = -999
+            });
             return Json(rootNodePreviews);
         }
 

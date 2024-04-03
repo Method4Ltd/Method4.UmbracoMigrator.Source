@@ -48,6 +48,12 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         /// <returns></returns>
         public List<IMedia> GetRootNodeAndDescendants(int id)
         {
+            if (id == -21) // Recycle Bin
+            {
+                var trashedNodes = _mediaService.GetPagedMediaInRecycleBin(0, int.MaxValue, out var totalInBin);
+                return trashedNodes.ToList();
+            }
+
             var rootNode = _mediaService.GetRootMedia().FirstOrDefault(x => x.Id == id);
             if (rootNode == null)
             {

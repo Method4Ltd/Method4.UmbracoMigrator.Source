@@ -21,6 +21,7 @@
  */
 
 using System.Xml.Linq;
+using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 
@@ -36,6 +37,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
             IDataTypeService dataTypeService)
             : base(localizationService, relationService, entityService, contentService, mediaService, dataTypeService)
         {
+            this.relationAlias = Constants.Conventions.RelationTypes.RelateParentMediaFolderOnDeleteAlias;
         }
 
         public XElement Serialize(IMedia item)

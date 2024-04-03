@@ -39,6 +39,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
         protected IContentService _contentService;
         protected IMediaService _mediaService;
         protected IDataTypeService _dataTypeService;
+        protected string relationAlias;
 
         public ContentSerializerBase(ILocalizationService localizationService, IRelationService relationService, IEntityService entityService, IContentService contentService, IMediaService mediaService, IDataTypeService dataTypeService)
         {
@@ -86,12 +87,12 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
 
         private IEntitySlim GetTrashedParent(TObject item)
         {
-            if (!item.Trashed || string.IsNullOrWhiteSpace(Constants.Conventions.RelationTypes.RelateParentDocumentOnDeleteAlias)) return null;
+            if (!item.Trashed || string.IsNullOrWhiteSpace(relationAlias)) return null;
 
-            var parents = _relationService.GetByChild(item, Constants.Conventions.RelationTypes.RelateParentDocumentOnDeleteAlias);
+            var parents = _relationService.GetByChild(item, relationAlias);
+
             if (parents != null && parents.Any())
             {
-                //return syncMappers.EntityCache.GetEntity(parents.FirstOrDefault().ParentId);
                 return _entityService.Get(parents.FirstOrDefault().ParentId);
             }
 
