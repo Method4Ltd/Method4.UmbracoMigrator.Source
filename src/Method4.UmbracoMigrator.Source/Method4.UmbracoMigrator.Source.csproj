@@ -19,6 +19,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
 		<PackageIcon>UmbracoMigratorSource_Logo.png</PackageIcon>
+		<PackageVersion>0.0.1-alpha</PackageVersion>
 	</PropertyGroup>
 
 	<!-- Include NuGet dependencies -->

@@ -6,7 +6,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
 {
     public interface IMigratorContentService
     {
-        List<NodePreview> GetRootNodePreviews();
-        List<IContent> GetRootNodeAndDescendants(int id);
+        IEnumerable<NodePreview> GetRootNodePreviews();
+        IEnumerable<IContent> GetRootNodeAndDescendants(int id);
     }
 }

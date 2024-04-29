@@ -3,6 +3,7 @@ using Method4.UmbracoMigrator.Source.Core.Models.DataModels;
 using Method4.UmbracoMigrator.Source.Core.Serializers;
 using Method4.UmbracoMigrator.Source.Core.Services;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
@@ -39,7 +40,9 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
         [HttpGet]
         public IHttpActionResult GetRootContent()
         {
-            var rootNodePreviews = _migratorContentService.GetRootNodePreviews();
+            var rootNodePreviews = _migratorContentService
+                .GetRootNodePreviews()
+                .ToList();
             rootNodePreviews.Insert(0, new NodePreview()
             {
                 Id = -20,
@@ -54,7 +57,9 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
         [HttpGet]
         public IHttpActionResult GetRootMedia()
         {
-            var rootNodePreviews = _migratorMediaService.GetRootNodePreviews();
+            var rootNodePreviews = _migratorMediaService
+                .GetRootNodePreviews()
+                .ToList();
             rootNodePreviews.Insert(0, new NodePreview()
             {
                 Id = -21,

@@ -40,6 +40,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
         protected IMediaService _mediaService;
         protected IDataTypeService _dataTypeService;
         protected string relationAlias;
+        protected readonly string defaultCulture;
 
         public ContentSerializerBase(ILocalizationService localizationService, IRelationService relationService, IEntityService entityService, IContentService contentService, IMediaService mediaService, IDataTypeService dataTypeService)
         {
@@ -49,6 +50,8 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
             _contentService = contentService;
             _mediaService = mediaService;
             _dataTypeService = dataTypeService;
+
+            defaultCulture = _localizationService.GetDefaultLanguageIsoCode();
         }
 
         /// <summary>
@@ -70,7 +73,6 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
             }
             else
             {
-                var defaultCulture = _localizationService.GetDefaultLanguageIsoCode();
                 node.Add(new XAttribute(MigratorConstants.AvailableCulturesKey, defaultCulture));
             }
 

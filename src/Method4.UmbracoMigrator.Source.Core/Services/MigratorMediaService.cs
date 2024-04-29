@@ -34,9 +34,9 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         /// Get all root media nodes as preview models
         /// </summary>
         /// <returns></returns>
-        public List<NodePreview> GetRootNodePreviews()
+        public IEnumerable<NodePreview> GetRootNodePreviews()
         {
-            var rootNodes = _mediaService.GetRootMedia().ToList();
+            var rootNodes = _mediaService.GetRootMedia();
             return _nodePreviewFactory.ConvertToNodePreviews(rootNodes);
         }
 
@@ -46,12 +46,12 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<IMedia> GetRootNodeAndDescendants(int id)
+        public IEnumerable<IMedia> GetRootNodeAndDescendants(int id)
         {
             if (id == -21) // Recycle Bin
             {
                 var trashedNodes = _mediaService.GetPagedMediaInRecycleBin(0, int.MaxValue, out var totalInBin);
-                return trashedNodes.ToList();
+                return trashedNodes;
             }
 
             var rootNode = _mediaService.GetRootMedia().FirstOrDefault(x => x.Id == id);
@@ -63,33 +63,6 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
 
             var descendants = new List<IMedia> { rootNode };
             descendants.AddRange(GetAllDescendantNodes(rootNode));
-            descendants.OrderByDescending(x => x.Level);
-
-            return descendants;
-        }
-
-        /// <summary>
-        /// Return all media nodes.
-        /// </summary>
-        /// <returns></returns>
-        public List<IMedia> GetAllMediaNodes()
-        {
-            var rootNodes = _mediaService.GetRootMedia();
-            if (rootNodes == null)
-            {
-                //throw?
-                return new List<IMedia>();
-            }
-
-            var descendants = new List<IMedia>();
-            descendants.AddRange(rootNodes);
-
-            foreach (var rootNode in rootNodes)
-            {
-                descendants.AddRange(GetAllDescendantNodes(rootNode));
-            }
-
-            descendants.OrderByDescending(x => x.Level);
 
             return descendants;
         }
@@ -110,20 +83,20 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
             }
         }
 
-        private List<IMedia> GetAllDescendantNodes(IMedia parent)
+        private IEnumerable<IMedia> GetAllDescendantNodes(IMedia parent)
         {
             var pageIndex = 0;
-            var pageSize = 100;
+            const int pageSize = 100;
             var children = new List<IMedia>();
 
             if (_mediaService.HasChildren(parent.Id) == false) return children;
 
             // Get all of the children of the parent node
-            children = _mediaService.GetPagedChildren(parent.Id, pageIndex, pageSize, out long totalRecords).ToList();
+            children.AddRange(_mediaService.GetPagedChildren(parent.Id, pageIndex, pageSize, out var totalRecords));
             while (children.Count < totalRecords)
             {
                 pageIndex++;
-                children.AddRange(_mediaService.GetPagedChildren(parent.Id, pageIndex, pageSize, out long totalRecords2).ToList());
+                children.AddRange(_mediaService.GetPagedChildren(parent.Id, pageIndex, pageSize, out _));
             }
 
             var descendants = new List<IMedia>();

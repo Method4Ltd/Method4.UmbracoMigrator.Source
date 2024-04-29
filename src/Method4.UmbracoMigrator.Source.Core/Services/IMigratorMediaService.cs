@@ -6,9 +6,8 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
 {
     public interface IMigratorMediaService
     {
-        List<NodePreview> GetRootNodePreviews();
-        List<IMedia> GetRootNodeAndDescendants(int id);
-        List<IMedia> GetAllMediaNodes();
+        IEnumerable<NodePreview> GetRootNodePreviews();
+        IEnumerable<IMedia> GetRootNodeAndDescendants(int id);
         void CopyAllMediaFiles();
     }
 }

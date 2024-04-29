@@ -23,9 +23,9 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         /// Get all root content nodes as preview models
         /// </summary>
         /// <returns></returns>
-        public List<NodePreview> GetRootNodePreviews()
+        public IEnumerable<NodePreview> GetRootNodePreviews()
         {
-            var rootNodes = _contentService.GetRootContent().ToList();
+            var rootNodes = _contentService.GetRootContent();
             return _nodePreviewFactory.ConvertToNodePreviews(rootNodes);
         }
 
@@ -35,12 +35,12 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<IContent> GetRootNodeAndDescendants(int id)
+        public IEnumerable<IContent> GetRootNodeAndDescendants(int id)
         {
             if (id == -20) // Recycle Bin
             {
                 var trashedNodes = _contentService.GetPagedContentInRecycleBin(0, int.MaxValue, out var totalInBin);
-                return trashedNodes.ToList();
+                return trashedNodes;
             }
 
             var rootNode = _contentService.GetRootContent().FirstOrDefault(x => x.Id == id);
@@ -52,25 +52,24 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
 
             var descendants = new List<IContent> { rootNode };
             descendants.AddRange(GetAllDescendantNodes(rootNode));
-            descendants.OrderByDescending(x => x.Level);
 
             return descendants;
         }
 
-        private List<IContent> GetAllDescendantNodes(IContent parent)
+        private IEnumerable<IContent> GetAllDescendantNodes(IContent parent)
         {
             var pageIndex = 0;
-            var pageSize = 100;
+            const int pageSize = 100;
             var children = new List<IContent>();
 
             if (_contentService.HasChildren(parent.Id) == false) return children;
 
             // Get all of the children of the parent node
-            children = _contentService.GetPagedChildren(parent.Id, pageIndex, pageSize, out long totalRecords).ToList();
+            children.AddRange(_contentService.GetPagedChildren(parent.Id, pageIndex, pageSize, out var totalRecords));
             while (children.Count < totalRecords)
             {
                 pageIndex++;
-                children.AddRange(_contentService.GetPagedChildren(parent.Id, pageIndex, pageSize, out long totalRecords2).ToList());
+                children.AddRange(_contentService.GetPagedChildren(parent.Id, pageIndex, pageSize, out _));
             }
 
             var descendants = new List<IContent>();
