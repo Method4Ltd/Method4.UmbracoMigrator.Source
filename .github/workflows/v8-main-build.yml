@@ -1,0 +1,27 @@
+name: v8 Main - Build
+
+on:
+  push:
+    branches: [ "v8/main" ]
+  pull_request:
+    branches: [ "v8/main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+    
+    - name: Restore Packages
+      run: nuget restore src/Method4.UmbracoMigrator.Source.sln
+    
+    - name: Build solution
+      run: msbuild src/Method4.UmbracoMigrator.Source.sln -t:rebuild -property:Configuration=Release
