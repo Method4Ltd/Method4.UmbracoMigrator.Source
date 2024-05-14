@@ -16,7 +16,6 @@
 		<PackageProjectUrl>https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageVersion>0.0.1-alpha</PackageVersion>
 	</PropertyGroup>
 
 	<!-- Include NuGet dependencies -->

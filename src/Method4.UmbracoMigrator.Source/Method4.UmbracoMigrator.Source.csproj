@@ -19,13 +19,14 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
 		<PackageIcon>UmbracoMigratorSource_Logo.png</PackageIcon>
-		<PackageVersion>0.0.1-alpha</PackageVersion>
 	</PropertyGroup>
 
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
 		<ProjectReference Include="..\Method4.UmbracoMigrator.Source.Core\Method4.UmbracoMigrator.Source.Core.csproj" />
-		<PackageReference Include="UmbracoCms" Version="[8.18.0,8.999)" />
+		<PackageReference Include="UmbracoCms" Version="[8.18.0,8.999)">
+			<ExcludeAssets>runtime;build;native;contentfiles;analyzers;buildtransitive</ExcludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<!-- Include our backoffice assets -->
