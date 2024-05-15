@@ -16,7 +16,13 @@ jobs:
     - name: Set VERSION variable from tag
       run: |
         git fetch --tags
-        echo "VERSION=$(git describe --tags --abbrev=0)" >> $env:GITHUB_ENV
+        $tag = git describe --tags --abbrev=0
+        if ($tag.StartsWith("v")) {
+          $cleanTag = $tag.Substring(1)
+        } else {
+          $cleanTag = $tag
+        }
+        echo "GIT_TAG=$cleanTag" >> $env:GITHUB_ENV
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v2
