@@ -14,7 +14,9 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set VERSION variable from tag
-      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      run: |
+        git fetch --tags
+        echo "VERSION=$(git describe --tags --abbrev=0)" >> $env:GITHUB_ENV
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v2
@@ -23,17 +25,17 @@ jobs:
       run: nuget restore src/Method4.UmbracoMigrator.Source.sln
     
     - name: Pack Core Project
-      run: dotnet pack src/Method4.UmbracoMigrator.Source.Core/Method4.UmbracoMigrator.Source.Core.csproj -p:PackageVersion=${VERSION} --configuration Release --output .
+      run: dotnet pack src/Method4.UmbracoMigrator.Source.Core/Method4.UmbracoMigrator.Source.Core.csproj -p:PackageVersion=$env:VERSION --configuration Release --output .
       
     - name: Pack Main Project
-      run: dotnet pack src/Method4.UmbracoMigrator.Source/Method4.UmbracoMigrator.Source.csproj -p:PackageVersion=${VERSION} --configuration Release --output .
+      run: dotnet pack src/Method4.UmbracoMigrator.Source/Method4.UmbracoMigrator.Source.csproj -p:PackageVersion=$env:VERSION --configuration Release --output .
       
     - name: Push Core Project
-      run: dotnet nuget push Method4.UmbracoMigrator.Source.Core.${VERSION}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Method4.UmbracoMigrator.Source.Core.$env:VERSION.nupkg --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         
     - name: Push Main Project
-      run: dotnet nuget push Method4.UmbracoMigrator.Source.${VERSION}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Method4.UmbracoMigrator.Source.$env:VERSION.nupkg --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
