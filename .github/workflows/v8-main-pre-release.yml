@@ -22,13 +22,10 @@ jobs:
         } else {
           $cleanTag = $tag
         }
-        echo "GIT_TAG=$cleanTag" >> $env:GITHUB_ENV
+        echo "VERSION=$cleanTag" >> $env:GITHUB_ENV
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v2
-    
-    - name: Restore Packages
-      run: nuget restore src/Method4.UmbracoMigrator.Source.sln
+    - name: Show VERSION
+      run: echo "VERSION is $env:VERSION"
     
     - name: Pack Core Project
       run: dotnet pack src/Method4.UmbracoMigrator.Source.Core/Method4.UmbracoMigrator.Source.Core.csproj -p:PackageVersion=$env:VERSION --configuration Release --output .
