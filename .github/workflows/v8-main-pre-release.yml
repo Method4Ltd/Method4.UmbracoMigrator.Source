@@ -23,10 +23,10 @@ jobs:
       run: nuget restore src/Method4.UmbracoMigrator.Source.sln
     
     - name: Pack Core Project
-      run: dotnet pack src/Method4.UmbracoMigrator.Source.Core/Method4.UmbracoMigrator.Source.Core.csproj --configuration Release /p:Version=${VERSION} --output .
+      run: dotnet pack src/Method4.UmbracoMigrator.Source.Core/Method4.UmbracoMigrator.Source.Core.csproj -p:Version=${VERSION} --configuration Release --output .
       
     - name: Pack Main Project
-      run: dotnet pack src/Method4.UmbracoMigrator.Source/Method4.UmbracoMigrator.Source.csproj --configuration Release /p:Version=${VERSION} --output .
+      run: dotnet pack src/Method4.UmbracoMigrator.Source/Method4.UmbracoMigrator.Source.csproj -p:Version=${VERSION} --configuration Release --output .
       
     - name: Push Core Project
       run: dotnet nuget push Method4.UmbracoMigrator.Source.Core.${VERSION}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
