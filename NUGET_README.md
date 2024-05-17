@@ -1,6 +1,6 @@
 # Method4.UmbracoMigrator.Source
 [![Mozilla Public License](https://img.shields.io/badge/MPL--2.0-orange?label=license)](https://opensource.org/licenses/MPL-2) 
-[![Latest version](https://img.shields.io/nuget/v/Method4.UmbracoMigrator.Source?label=version)](https://marketplace.umbraco.com/package/method4.umbracomigrator.source) 
+[![Latest version](https://img.shields.io/nuget/v/Method4.UmbracoMigrator.Source?label=nuget)](https://www.nuget.org/packages/Method4.UmbracoMigrator.Source) 
 [![NuGet download count](https://img.shields.io/nuget/dt/Method4.UmbracoMigrator.Source?label=downloads)](https://www.nuget.org/packages/Method4.UmbracoMigrator.Source)
 [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/method4.umbracomigrator.source)
 
@@ -25,24 +25,14 @@ Please view the Method4.UmbracoMigrator.Target repo to find out about all of the
     - MediaPicker (legacy) can be converted to the new MediPicker 3's format automatically
 
 ## Installation & Umbraco Version Support
-> The Package's major versions will match the minimum compatible Umbraco version.<br>
-> Whilst this does go against semantic versioning, it should make it easier to figure out which version will work for you.<br>
+> The Package's major versions will match the minimum compatible Umbraco version.  
+> Whilst this does go against semantic versioning, it should make it easier to figure out which version will work for you.  
 > We'll try to keep breaking changes out of minor versions, but they may happen if we need them.
 
-<table>
-  <tr>
-    <th><strong>Umbraco Version</strong></th>
-    <th><string>Package Version</strong></th>
-  </tr>
-  <tr>
-    <td>v7</td>
-    <td>v7.x</td>
-  </tr>
-  <tr>
-    <td>v8</td>
-    <td>v8.x</td>
-  </tr>
-</table>
+| Umbraco Version | Package Version |
+|-----------------|-----------------|
+| v7              | v7.x            |
+| v8              | v8.x            |
 
 ## Links
 - Repo: https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source
