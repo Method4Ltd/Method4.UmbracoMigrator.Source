@@ -1,28 +1,29 @@
 ﻿using Method4.UmbracoMigrator.Source.Core.Factories;
 using Method4.UmbracoMigrator.Source.Core.Serializers;
 using Method4.UmbracoMigrator.Source.Core.Services;
-using Umbraco.Core;
-using Umbraco.Core.Composing;
-using Umbraco.Core.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.DependencyInjection;
+using Umbraco.Cms.Core.Models;
 
 namespace Method4.UmbracoMigrator.Source.Core
 {
-    public class Composer : IUserComposer
+    public class Composer : IComposer
     {
-        public void Compose(Composition composition)
+        public void Compose(IUmbracoBuilder builder)
         {
             // Factories
-            composition.Register<IPreviewFactory, PreviewFactory>();
+            builder.Services.AddTransient<IPreviewFactory, PreviewFactory>();
 
             // Serializers
-            composition.Register<ISerializer<IContent>, ContentSerializer>();
-            composition.Register<ISerializer<IMedia>, MediaSerializer>();
+            builder.Services.AddTransient<ISerializer<IContent>, ContentSerializer>();
+            builder.Services.AddTransient<ISerializer<IMedia>, MediaSerializer>();
 
             // Services
-            composition.Register<IMigratorBlobService, MigratorBlobService>();
-            composition.Register<IMigratorFileService, MigratorFileService>();
-            composition.Register<IMigratorMediaService, MigratorMediaService>();
-            composition.Register<IMigratorContentService, MigratorContentService>();
+            builder.Services.AddTransient<IMigratorBlobService, MigratorBlobService>();
+            builder.Services.AddTransient<IMigratorFileService, MigratorFileService>();
+            builder.Services.AddTransient<IMigratorMediaService, MigratorMediaService>();
+            builder.Services.AddTransient<IMigratorContentService, MigratorContentService>();
         }
     }
 }

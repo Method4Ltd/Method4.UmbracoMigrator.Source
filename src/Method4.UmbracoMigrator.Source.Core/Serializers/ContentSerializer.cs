@@ -20,11 +20,10 @@
  * limitations under the License.
  */
 
-using System.Linq;
 using System.Xml.Linq;
-using Umbraco.Core;
-using Umbraco.Core.Models;
-using Umbraco.Core.Services;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Services;
 
 namespace Method4.UmbracoMigrator.Source.Core.Serializers
 {
@@ -105,7 +104,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
         protected virtual XElement SerializeSchedule(IContent item)
         {
             var node = new XElement("Schedule");
-            var schedules = item.ContentSchedule.FullSchedule;
+            var schedules = _contentService.GetContentScheduleByContentId(item.Id).FullSchedule;
 
             if (schedules != null)
             {

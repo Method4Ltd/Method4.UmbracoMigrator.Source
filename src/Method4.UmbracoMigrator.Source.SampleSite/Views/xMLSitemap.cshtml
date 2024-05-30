@@ -1,7 +1,6 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
-
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-    Layout = "master.cshtml";
+    Context.Response.ContentType = "text/xml";
+    Layout = null;
 }
-
-<h1>XML Sitemap Placeholder</h1>
+@(await Html.CachedPartialAsync("~/Views/Partials/xmlSitemap.cshtml", Model, TimeSpan.FromMinutes(60)))

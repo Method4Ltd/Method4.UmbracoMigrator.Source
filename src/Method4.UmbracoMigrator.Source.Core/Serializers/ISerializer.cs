@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using Umbraco.Core.Models;
+using Umbraco.Cms.Core.Models;
 
 namespace Method4.UmbracoMigrator.Source.Core.Serializers
 {

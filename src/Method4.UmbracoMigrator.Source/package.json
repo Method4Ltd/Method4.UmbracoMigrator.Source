@@ -4,6 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
+    "@microsoft/signalr": "^7.0.3",
     "css-loader": "^6.7.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.8"
@@ -15,6 +16,7 @@
     "webpack-shell-plugin-next": "^2.2.2"
   },
   "scripts": {
+    "build:signalr": "webpack --config ./webpack.config.signalr.js",
     "build:dev": "webpack --config ./webpack.config.backoffice-dev.js",
     "watch:dev": "webpack --watch --config ./webpack.config.backoffice-dev.js"
   },

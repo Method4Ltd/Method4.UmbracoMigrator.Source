@@ -2,16 +2,14 @@
 using Method4.UmbracoMigrator.Source.Core.Models.DataModels;
 using Method4.UmbracoMigrator.Source.Core.Serializers;
 using Method4.UmbracoMigrator.Source.Core.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.IO;
 using System.Net.Http.Headers;
-using System.Web.Http;
 using System.Xml.Linq;
-using Umbraco.Core;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Models;
-using Umbraco.Web.WebApi;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Web.BackOffice.Controllers;
+using Umbraco.Extensions;
 
 namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
 {
@@ -21,12 +19,18 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
         private readonly IMigratorMediaService _migratorMediaService;
         private readonly IMigratorFileService _migratorFileService;
         private readonly IPreviewFactory _previewFactory;
-        private readonly ILogger _logger;
+        private readonly ILogger<MigratorSourceController> _logger;
 
         private readonly ISerializer<IContent> _contentSerializer;
         private readonly ISerializer<IMedia> _mediaSerializer;
 
-        public MigratorSourceController(IMigratorContentService migratorContentService, IMigratorMediaService migratorMediaService, ISerializer<IContent> contentSerializer, IMigratorFileService migratorFileService, ISerializer<IMedia> mediaSerializer, IPreviewFactory previewFactory, ILogger logger)
+        public MigratorSourceController(IMigratorContentService migratorContentService,
+            IMigratorMediaService migratorMediaService,
+            ISerializer<IContent> contentSerializer,
+            IMigratorFileService migratorFileService,
+            ISerializer<IMedia> mediaSerializer,
+            IPreviewFactory previewFactory,
+            ILogger<MigratorSourceController> logger)
         {
             _migratorContentService = migratorContentService;
             _migratorMediaService = migratorMediaService;
@@ -38,7 +42,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
         }
 
         [HttpGet]
-        public IHttpActionResult GetRootContent()
+        public IActionResult GetRootContent()
         {
             var rootNodePreviews = _migratorContentService
                 .GetRootNodePreviews()
@@ -51,11 +55,11 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
                 IconColour = "color-black",
                 SortOrder = -999
             });
-            return Json(rootNodePreviews);
+            return Ok(rootNodePreviews);
         }
 
         [HttpGet]
-        public IHttpActionResult GetRootMedia()
+        public IActionResult GetRootMedia()
         {
             var rootNodePreviews = _migratorMediaService
                 .GetRootNodePreviews()
@@ -68,22 +72,22 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
                 IconColour = "color-black",
                 SortOrder = -999
             });
-            return Json(rootNodePreviews);
+            return Ok(rootNodePreviews);
         }
 
         [HttpPost]
         public void CreateMigrationSnapshot(ExtractSettings settings)
         {
-            _logger.Info<MigratorSourceController>("Creating migration snapshot");
+            _logger.LogInformation("Creating migration snapshot");
 
             // Generate Content XML
-            _logger.Info<MigratorSourceController>("Starting generation of content XML");
+            _logger.LogInformation("Starting generation of content XML");
             var contentNodes = new List<IContent>();
             var contentRootCount = 0;
             foreach (var id in settings.SelectedRootNodes)
             {
                 contentRootCount++;
-                _logger.Info<MigratorSourceController>("Retrieving descendants for root content nodes {count}/{total} - \"{id}\"", contentRootCount, settings.SelectedRootNodes.Length, id);
+                _logger.LogInformation("Retrieving descendants for root content nodes {count}/{total} - \"{id}\"", contentRootCount, settings.SelectedRootNodes.Length, id);
                 contentNodes.AddRange(_migratorContentService.GetRootNodeAndDescendants(id));
             }
 
@@ -92,7 +96,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
             foreach (var node in contentNodes)
             {
                 contentSerializeCount++;
-                _logger.Info<MigratorSourceController>("Serializing content nodes {count}/{total} - \"{name}\"", contentSerializeCount, contentNodes.Count, node.Name.Truncate(20));
+                _logger.LogInformation("Serializing content nodes {count}/{total} - \"{name}\"", contentSerializeCount, contentNodes.Count, node.Name.Truncate(20));
                 if (settings.IncludeOnlyPublished && node.Published == false) { continue; }
                 contentXmlElements.Add(_contentSerializer.Serialize(node));
             }
@@ -101,16 +105,16 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
             contentNodesXml.Add(contentXmlElements);
 
             _migratorFileService.SaveContentXML(contentNodesXml);
-            _logger.Info<MigratorSourceController>("Finished generation of content XML");
+            _logger.LogInformation("Finished generation of content XML");
 
             // Generate Media XML
-            _logger.Info<MigratorSourceController>("Starting generation of media XML");
+            _logger.LogInformation("Starting generation of media XML");
             var mediaNodes = new List<IMedia>();
             var mediaRootCount = 0;
             foreach (var id in settings.SelectedRootMediaNodes)
             {
                 mediaRootCount++;
-                _logger.Info<MigratorSourceController>("Retrieving descendants for root media nodes {count}/{total} - \"{id}\"", mediaRootCount, settings.SelectedRootMediaNodes.Length, id);
+                _logger.LogInformation("Retrieving descendants for root media nodes {count}/{total} - \"{id}\"", mediaRootCount, settings.SelectedRootMediaNodes.Length, id);
                 mediaNodes.AddRange(_migratorMediaService.GetRootNodeAndDescendants(id));
             }
 
@@ -119,7 +123,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
             foreach (var node in mediaNodes)
             {
                 mediaSerializeCount++;
-                _logger.Info<MigratorSourceController>("Serializing media nodes {count}/{total} - \"{name}\"", mediaSerializeCount, mediaNodes.Count, node.Name.Truncate(20));
+                _logger.LogInformation("Serializing media nodes {count}/{total} - \"{name}\"", mediaSerializeCount, mediaNodes.Count, node.Name.Truncate(20));
                 mediaXmlElements.Add(_mediaSerializer.Serialize(node));
             }
 
@@ -127,7 +131,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
             mediaNodesXml.Add(mediaXmlElements);
 
             _migratorFileService.SaveMediaXML(mediaNodesXml);
-            _logger.Info<MigratorSourceController>("Finished generation of media XML");
+            _logger.LogInformation("Finished generation of media XML");
 
             // export images to temp folder
             if (settings.IncludeMediaFiles)
@@ -141,38 +145,37 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.api
             // Delete temp files
             _migratorFileService.ClearMigrationSnapshotTempFolder();
 
-            _logger.Info<MigratorSourceController>("Finished creating migration snapshot");
+            _logger.LogInformation("Finished creating migration snapshot");
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteMigrationSnapshot(string fileName)
+        public IActionResult DeleteMigrationSnapshot(string fileName)
         {
             _migratorFileService.DeleteMigrationSnapshotFile(fileName);
-            return Json(true);
+            return Ok(true);
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteAllMigrationSnapshots()
+        public IActionResult DeleteAllMigrationSnapshots()
         {
             _migratorFileService.DeleteAllMigrationSnapshotFiles();
-            return Json(true);
+            return Ok(true);
         }
 
         [HttpGet]
-        public HttpResponseMessage DownloadMigrationSnapshot(string fileName)
+        public IActionResult DownloadMigrationSnapshot(string fileName)
         {
-            _logger.Info<MigratorSourceController>("Downloading migration snapshot {filename}", fileName);
+            _logger.LogInformation("Downloading migration snapshot {filename}", fileName);
             var snapshotFile = _migratorFileService.GetMigrationSnapshotFile(fileName);
-            var response = BuildDownloadResponse(snapshotFile, fileName);
-            return response;
+            return File(snapshotFile, "application/zip", fileName);
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllMigrationSnapshots()
+        public IActionResult GetAllMigrationSnapshots()
         {
             var snapshotFiles = _migratorFileService.GetAllMigrationSnapshotFiles();
             var snapshotPreviews = _previewFactory.ConvertToFilePreviews(snapshotFiles);
-            return Json(snapshotPreviews);
+            return Ok(snapshotPreviews);
         }
 
         private HttpResponseMessage BuildDownloadResponse(StreamContent document, string fileName)

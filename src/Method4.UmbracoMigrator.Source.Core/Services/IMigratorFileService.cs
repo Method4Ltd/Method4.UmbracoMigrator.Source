@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Method4.UmbracoMigrator.Source.Core.Services
 {
@@ -14,7 +11,7 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
         void CopyMediaFilesFromBlob();
         void CreateMigrationZipFile();
         List<FileInfo> GetAllMigrationSnapshotFiles();
-        StreamContent GetMigrationSnapshotFile(string fileName);
+        byte[] GetMigrationSnapshotFile(string fileName);
         void DeleteAllMigrationSnapshotFiles();
         void DeleteMigrationSnapshotFile(string fileName);
     }

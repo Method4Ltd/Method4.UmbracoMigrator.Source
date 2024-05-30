@@ -1,10 +1,7 @@
-﻿using System;
-using Method4.UmbracoMigrator.Source.Core.Factories;
+﻿using Method4.UmbracoMigrator.Source.Core.Factories;
 using Method4.UmbracoMigrator.Source.Core.Models.DataModels;
-using System.Collections.Generic;
-using System.Linq;
-using Umbraco.Core.Models;
-using Umbraco.Core.Services;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Services;
 
 namespace Method4.UmbracoMigrator.Source.Core.Services
 {

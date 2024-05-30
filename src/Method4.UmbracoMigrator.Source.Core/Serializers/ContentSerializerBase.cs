@@ -20,14 +20,11 @@
  * limitations under the License.
  */
 
-using System;
-using System.Linq;
 using System.Xml.Linq;
-using Umbraco.Core;
-using Umbraco.Core.Models;
-using Umbraco.Core.Models.Entities;
-using Umbraco.Core.Services;
-using Umbraco.Core.Services.Implement;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Models.Entities;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Extensions;
 
 namespace Method4.UmbracoMigrator.Source.Core.Serializers
 {
@@ -42,7 +39,13 @@ namespace Method4.UmbracoMigrator.Source.Core.Serializers
         protected string relationAlias;
         protected readonly string defaultCulture;
 
-        public ContentSerializerBase(ILocalizationService localizationService, IRelationService relationService, IEntityService entityService, IContentService contentService, IMediaService mediaService, IDataTypeService dataTypeService)
+        public ContentSerializerBase(
+            ILocalizationService localizationService, 
+            IRelationService relationService, 
+            IEntityService entityService, 
+            IContentService contentService, 
+            IMediaService mediaService, 
+            IDataTypeService dataTypeService)
         {
             _localizationService = localizationService;
             _relationService = relationService;

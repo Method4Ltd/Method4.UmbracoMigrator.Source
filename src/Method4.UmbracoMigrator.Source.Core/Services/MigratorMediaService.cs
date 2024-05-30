@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using Method4.UmbracoMigrator.Source.Core.Factories;
+﻿using Method4.UmbracoMigrator.Source.Core.Factories;
 using Method4.UmbracoMigrator.Source.Core.Models.DataModels;
-using Umbraco.Core;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Models;
-using Umbraco.Core.Services;
-using Umbraco.Core.Services.Implement;
+using Microsoft.Extensions.Configuration;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Extensions;
 
 namespace Method4.UmbracoMigrator.Source.Core.Services
 {
@@ -20,13 +15,16 @@ namespace Method4.UmbracoMigrator.Source.Core.Services
 
         private readonly bool isBlob;
 
-        public MigratorMediaService(IMediaService mediaService, IMigratorFileService migratorFileService, IPreviewFactory nodePreviewFactory)
+        public MigratorMediaService(IMediaService mediaService, 
+            IMigratorFileService migratorFileService, 
+            IPreviewFactory nodePreviewFactory,
+            IConfiguration config)
         {
             _mediaService = mediaService;
             _migratorFileService = migratorFileService;
             _nodePreviewFactory = nodePreviewFactory;
 
-            string blobConnectionString = ConfigurationManager.AppSettings["AzureBlobFileSystem.ConnectionString:media"];
+            var blobConnectionString = config.GetValue<string>("Umbraco:Storage:AzureBlob:Media:ConnectionString") ?? null;
             isBlob = !blobConnectionString.IsNullOrWhiteSpace();
         }
 

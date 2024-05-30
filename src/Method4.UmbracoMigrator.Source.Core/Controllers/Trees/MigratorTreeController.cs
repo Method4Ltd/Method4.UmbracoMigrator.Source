@@ -1,11 +1,12 @@
-﻿using System;
-using System.Net.Http.Formatting;
-using System.Web.Http.ModelBinding;
-using Umbraco.Core;
-using Umbraco.Web.Models.Trees;
-using Umbraco.Web.Mvc;
-using Umbraco.Web.Trees;
-using Umbraco.Web.WebApi.Filters;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Events;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.Trees;
+using Umbraco.Cms.Web.BackOffice.Trees;
+using Umbraco.Cms.Web.Common.Attributes;
+using Umbraco.Cms.Web.Common.ModelBinders;
 
 namespace Method4.UmbracoMigrator.Source.Core.Controllers.Trees
 {
@@ -16,24 +17,31 @@ namespace Method4.UmbracoMigrator.Source.Core.Controllers.Trees
     [PluginController("method4UmbracoMigratorSource")]
     public class MigratorTreeController : TreeController
     {
-        protected override TreeNode CreateRootNode(FormDataCollection queryStrings)
+        public MigratorTreeController(
+            ILocalizedTextService localizedTextService,
+            UmbracoApiControllerTypeCollection umbracoApiControllerTypeCollection,
+            IEventAggregator eventAggregator)
+            : base(localizedTextService, umbracoApiControllerTypeCollection, eventAggregator)
+        { }
+
+        protected override ActionResult<TreeNode> CreateRootNode(FormCollection queryStrings)
         {
             var root = base.CreateRootNode(queryStrings);
 
-            root.RoutePath = $"{this.SectionAlias}/migratorSource/dashboard";
-            root.Icon = "icon-truck";
-            root.HasChildren = false;
-            root.MenuUrl = null;
+            root.Value.RoutePath = $"{this.SectionAlias}/migratorSource/dashboard";
+            root.Value.Icon = "icon-truck";
+            root.Value.HasChildren = false;
+            root.Value.MenuUrl = null;
 
-            return root;
+            return root.Value;
         }
 
-        protected override MenuItemCollection GetMenuForNode(string id, [ModelBinder(typeof(HttpQueryStringModelBinder))] FormDataCollection queryStrings)
+        protected override ActionResult<MenuItemCollection> GetMenuForNode(string id, [ModelBinder(typeof(HttpQueryStringModelBinder))] FormCollection queryStrings)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
-        protected override TreeNodeCollection GetTreeNodes(string id, [ModelBinder(typeof(HttpQueryStringModelBinder))] FormDataCollection queryStrings)
+        protected override ActionResult<TreeNodeCollection> GetTreeNodes(string id, [ModelBinder(typeof(HttpQueryStringModelBinder))] FormCollection queryStrings)
         {
             return new TreeNodeCollection();
         }

@@ -1,8 +1,5 @@
 ﻿using Method4.UmbracoMigrator.Source.Core.Models.DataModels;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Umbraco.Core.Models;
+using Umbraco.Cms.Core.Models;
 
 namespace Method4.UmbracoMigrator.Source.Core.Factories
 {
