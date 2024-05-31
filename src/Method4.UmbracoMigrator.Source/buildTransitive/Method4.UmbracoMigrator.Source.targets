@@ -1,0 +1,23 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Method4UmbracoMigratorSourceContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\Method4.UmbracoMigrator.Source\**\*.*</Method4UmbracoMigratorSourceContentFilesPath>
+	</PropertyGroup>
+
+	<Target Name="CopyMethod4UmbracoMigratorSourceAssets" BeforeTargets="Build">
+		<ItemGroup>
+			<Method4UmbracoMigratorSourceContentFiles Include="$(Method4UmbracoMigratorSourceContentFilesPath)" />
+		</ItemGroup>
+		<Message Text="Copying Method4.UmbracoMigrator.Source files: $(Method4UmbracoMigratorSourceContentFilesPath) - #@(Method4UmbracoMigratorSourceContentFiles->Count()) files" Importance="high" />
+		<Copy SourceFiles="@(Method4UmbracoMigratorSourceContentFiles)" 
+		      DestinationFiles="@(Method4UmbracoMigratorSourceContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Method4.UmbracoMigrator.Source\%(RecursiveDir)%(Filename)%(Extension)')" 
+		      SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="ClearMethod4UmbracoMigratorSourceAssets" BeforeTargets="Clean">
+		<ItemGroup>
+			<Method4UmbracoMigratorSourceDir Include="$(MSBuildProjectDirectory)\App_Plugins\Method4.UmbracoMigrator.Source\" />
+		</ItemGroup>
+		<Message Text="Clear old Method4.UmbracoMigrator.Source data" Importance="high" />
+		<RemoveDir Directories="@(Method4UmbracoMigratorSourceDir)" />
+	</Target>
+</Project>
