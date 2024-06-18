@@ -56,6 +56,17 @@
                             label-off="Include only published nodes"
                             label-position="right">
                 </umb-toggle>
+                <umb-button class="select-all"
+                            action="vm.selectAllContent();"
+                            label-key="migratorSource_selectAllContent"
+                            type="button"
+                            button-style="info">
+                </umb-button>
+                <umb-button action="vm.deselectAllContent();"
+                            label-key="migratorSource_deselectAllContent"
+                            type="button"
+                            button-style="info">
+                </umb-button>
             </div>
             <div class="root-node-previews">
                 <div class="root-node-previews__node" ng-repeat="item in vm.rootNodes" ng-click="vm.toggleNode(item.Id)" ng-class="(vm.settings.selectedRootNodes.includes(item.Id) === true) ? '-include' : '-exclude'">
@@ -77,6 +88,17 @@
                             label-off="Include physical media files"
                             label-position="right">
                 </umb-toggle>
+                <umb-button class="select-all"
+                            action="vm.selectAllMedia();"
+                            label-key="migratorSource_selectAllMedia"
+                            type="button"
+                            button-style="info">
+                </umb-button>
+                <umb-button action="vm.deselectAllMedia();"
+                            label-key="migratorSource_deselectAllMedia"
+                            type="button"
+                            button-style="info">
+                </umb-button>
             </div>
 
             <div class="root-node-previews">

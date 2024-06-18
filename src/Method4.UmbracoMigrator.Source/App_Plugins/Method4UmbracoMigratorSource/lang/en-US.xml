@@ -10,5 +10,9 @@
 		<key alias="downloadSnapshot">Download</key>
 		<key alias="deleteSnapshot">Delete</key>
 		<key alias="deleteAllSnapshots">Delete all</key>
+		<key alias="selectAllContent">Select All</key>
+		<key alias="selectAllMedia">Select All</key>
+		<key alias="deselectAllMedia">Deselect All</key>
+		<key alias="deselectAllContent">Deselect All</key>
 	</area>
 </language>

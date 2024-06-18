@@ -34,8 +34,12 @@
 
     .migrator-dashboard .settings-container {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         margin-bottom: 10px;
+    }
+    
+    .migrator-dashboard .settings-container .select-all {
+        margin-left: auto;
     }
 
     .migrator-dashboard .settings-container__setting {
