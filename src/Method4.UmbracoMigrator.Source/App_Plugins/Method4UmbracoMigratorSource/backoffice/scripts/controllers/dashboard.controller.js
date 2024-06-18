@@ -105,6 +105,30 @@
                 });
         }
 
+        vm.selectAllMedia = () => {
+            if (vm.rootMediaNodes == null) { return; }
+            vm.settings.selectedRootMediaNodes = [];
+            vm.rootMediaNodes.forEach(item => {
+                vm.settings.selectedRootMediaNodes.push(item.Id);
+            });
+        }
+
+        vm.selectAllContent = () => {
+            if (vm.rootNodes == null) { return; }
+            vm.settings.selectedRootNodes = [];
+            vm.rootNodes.forEach(item => {
+                vm.settings.selectedRootNodes.push(item.Id);
+            });
+        }
+
+        vm.deselectAllMedia = () => {
+            vm.settings.selectedRootMediaNodes = [];
+        }
+
+        vm.deselectAllContent = () => {
+            vm.settings.selectedRootNodes = [];
+        }
+
         //// Private Functions ////
         function initialise() {
             vm.rootNodes = null;
