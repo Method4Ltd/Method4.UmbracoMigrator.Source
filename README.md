@@ -57,6 +57,14 @@ Physical media files will be downloaded from Azure Blob storage if it is being u
     <td>v8</td>
     <td>v8.x</td>
   </tr>
+  <tr>
+    <td>v10</td>
+    <td>v10.x</td>
+  </tr>
+  <tr>
+    <td>v13</td>
+    <td>v13.x</td>
+  </tr>
 </table>
 
 ### NuGet package repository
