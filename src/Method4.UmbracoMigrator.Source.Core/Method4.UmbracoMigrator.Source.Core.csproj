@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -24,8 +24,8 @@
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Azure.Storage.Blobs" Version="[12.14.0,12.999)" />
-		<PackageReference Include="Umbraco.Cms.Core" Version="[10.0.0,10.999)" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0,10.999)" />
-		<PackageReference Include="Umbraco.Cms.Web.Common" Version="[10.0.0,10.999)" />
+		<PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" />
+		<PackageReference Include="Umbraco.Cms.Web.Common" Version="[13.0.0,13.999)" />
 	</ItemGroup>
 </Project>

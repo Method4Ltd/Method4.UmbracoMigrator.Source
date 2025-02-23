@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -27,9 +27,9 @@
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
 		<ProjectReference Include="..\Method4.UmbracoMigrator.Source.Core\Method4.UmbracoMigrator.Source.Core.csproj" />
-		<PackageReference Include="Umbraco.Cms.Core" Version="[10.0.0,10.999)" />
-		<PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0,10.999)" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0,10.999)" />
+		<PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" />
 	</ItemGroup>
 
 	<!-- Include our backoffice assets -->
