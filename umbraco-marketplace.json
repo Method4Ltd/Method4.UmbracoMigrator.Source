@@ -34,6 +34,14 @@
       {
         "UmbracoMajorVersion": 8,
         "PackageId": "Method4.UmbracoMigrator.Source"
+      },
+      {
+        "UmbracoMajorVersion": 10,
+        "PackageId": "Method4.UmbracoMigrator.Source"
+      },
+      {
+        "UmbracoMajorVersion":13,
+        "PackageId": "Method4.UmbracoMigrator.Source"
       }
     ],
     "VideoUrl": ""

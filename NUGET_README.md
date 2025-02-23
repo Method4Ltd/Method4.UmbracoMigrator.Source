@@ -33,6 +33,8 @@ Please view the Method4.UmbracoMigrator.Target repo to find out about all of the
 |-----------------|-----------------|
 | v7              | v7.x            |
 | v8              | v8.x            |
+| v10             | v10.x           |
+| v13             | v13.x           |
 
 ## Links
 - Repo: https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source
