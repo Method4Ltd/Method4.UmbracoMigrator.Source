@@ -7,7 +7,7 @@
 [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/method4.umbracomigrator.source)
 
 ## What is the Method4.UmbracoMigrator?
-The Method4 Umbraco Migrator allows migrating content and media from an Umbraco v7/v8 site to an Umbraco v10+ site.
+The Method4 Umbraco Migrator allows migrating content and media from your old Umbraco site to your new Umbraco site!
 
 This tool was originally created as an internal tool for us at Method4, to make migrating our client's Umbraco sites easy, and we've decided to make it available as an open-source package; as we believe other devs in the Umbraco community may find it useful too.
 
@@ -56,6 +56,14 @@ Physical media files will be downloaded from Azure Blob storage if it is being u
   <tr>
     <td>v8</td>
     <td>v8.x</td>
+  </tr>
+  <tr>
+    <td>v10</td>
+    <td>v10.x</td>
+  </tr>
+  <tr>
+    <td>v13</td>
+    <td>v13.x</td>
   </tr>
 </table>
 
