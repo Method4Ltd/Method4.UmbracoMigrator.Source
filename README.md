@@ -13,10 +13,10 @@ This tool was originally created as an internal tool for us at Method4, to make 
 
 The migrator tool consists of 2 packages:
 
-### 📤 [Method4.UmbracoMigrator.Source](https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source)
+### 📤 [Method4.UmbracoMigrator.Source](https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Source)
 Generates the Migration Snapshot (.zip) files that will be imported into your new Umbraco v10+ site using the Target package.
 
-### 📤 [Method4.UmbracoMigrator.Target](https://github.com/Method4Ltd/Method4.UmbracoMigrator.Target)
+### 📤 [Method4.UmbracoMigrator.Target](https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Target)
 Imports the migration snapshots and runs mappers to transform the data.
 
 Please view the Method4.UmbracoMigrator.Target repo to find out about all of the available features, which include:
@@ -79,7 +79,7 @@ dotnet add package Method4.UmbracoMigrator.Source
 Documentation can be found in the `/docs` folder.
 
 ### How do I import a migration snapshot?
-You will need to install the [Method4.UmbracoMigrator.Target](https://github.com/Method4Ltd/Method4.UmbracoMigrator.Target) package onto your target website, to import the snapshots.
+You will need to install the [Method4.UmbracoMigrator.Target](https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Target) package onto your target website, to import the snapshots.
 
 ![Diagram showing a snapshot export from a va8 to v13 site](./docs/images/Snapshot_diagram.png)
 
@@ -92,7 +92,7 @@ The package will be updated as and when we need it, feel free to report any bugs
 Please see the [roadmap](./docs/ROADMAP.md) for a list of outstanding features and TODOs.
 
 ## 📝 License
-Copyright &copy; [Method4](https://www.method4.co.uk/).
+Copyright &copy; [Aspire Systems Digital Solutions Ltd](https://www.aspiresys.com/uk).
 
 All source code is licensed under the [Mozilla Public License](./LICENSE).
 

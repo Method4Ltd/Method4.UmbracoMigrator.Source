@@ -8,7 +8,7 @@
     
     Generate Migration Snapshots for use in the Method4.UmbracoMigrator.Target package.
 
-    Repo    : https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source
-    Docs    : https://github.com/Method4Ltd/Method4.UmbracoMigrator.Source/blob/v10/main/docs/README.md
+    Repo    : https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Source
+    Docs    : https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Source/blob/v10/main/docs/README.md
 
     🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚 Method4.UmbracoMigrator.Source 🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚🚚
