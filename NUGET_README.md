@@ -44,6 +44,6 @@ Please view the Method4.UmbracoMigrator.Target repo to find out about all of the
 Please see the [roadmap](https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Source/blob/v8/main/docs/ROADMAP.md) for a list of outstanding features and TODOs.
 
 ## License
-Copyright &copy; [Method4](https://www.method4.co.uk/).
+Copyright &copy; [Aspire Systems Digital Solutions Ltd](https://www.aspiresys.com/uk).
 
 All source code is licensed under the [Mozilla Public License](https://github.com/AspireSystemsUK/Method4.UmbracoMigrator.Source/blob/v8/main/LICENSE).
